@@ -1,0 +1,31 @@
+def coulombs_law(charge1: float, charge2: float, distance: float, k: float = 8.99e9) -> float:
+    """
+    Apply Coulomb's Law to calculate the force between two charged particles given their charges and the
+    distance between them.
+
+    :param charge1: The charge of the first particle in Coulombs.
+    :param charge2: The charge of the second particle in Coulombs.
+    :param distance: The distance between the particles in meters.
+    :param k: The Coulomb constant. By default, it is set to 8.99e9 N*m^2/C^2.
+    :return: The force between the particles in Newtons.
+
+    >>> coulombs_law(charge1=1e-6, charge2=1e-6, distance=1)
+    8.988e-11
+    >>> coulombs_law(charge1=2e-6, charge2=-3e-6, distance=0.5)
+    -1.7936e-06
+    >>> coulombs_law(charge1=0, charge2=1e-6, distance=1)
+    0.0
+    >>> coulombs_law(charge1=1e-6, charge2=1e-6, distance=0)
+    Traceback (most recent call last):
+      ...
+    ValueError: Distance cannot be zero
+    """
+    if distance == 0:
+        raise ValueError("Distance cannot be zero")
+    force = k * charge1 * charge2 / distance ** 2
+    return force
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
